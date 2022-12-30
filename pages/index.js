@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
+import { checkout } from "../checkout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,12 +27,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>Buy my physical NFTs</h1>
         <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <div>
             <Image
               src="/images/monkeyreal.jpg"
               alt="monkey"
@@ -39,14 +35,23 @@ export default function Home() {
               height={240}
             />
             <p className={inter.className}>Very expensive art piece 1</p>
-          </a>
+            <button
+              onClick={() => {
+                checkout({
+                  lineItems: [
+                    {
+                      price: "price_1MKiCqFV6wNXacUdiOlaGq8H",
+                      quantity: 1,
+                    },
+                  ],
+                });
+              }}
+            >
+              BUY!
+            </button>
+          </div>
 
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <div>
             <Image
               src="/images/monyek1.jpg"
               alt="monkeynft"
@@ -54,7 +59,7 @@ export default function Home() {
               height={240}
             />
             <p className={inter.className}>Very expensive art piece 2</p>
-          </a>
+          </div>
         </div>
       </main>
     </>
